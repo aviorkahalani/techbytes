@@ -19,7 +19,7 @@ export default function PostItem({ post, children }: PostItemProps) {
   return (
     <article
       onClick={handleClick}
-      className="flex cursor-pointer flex-col gap-5 overflow-hidden rounded border bg-white shadow-sm transition hover:shadow"
+      className="flex cursor-pointer flex-col overflow-hidden rounded border bg-white shadow-sm transition hover:shadow"
     >
       {post.imageUrl && (
         <img
@@ -28,7 +28,7 @@ export default function PostItem({ post, children }: PostItemProps) {
           alt={post.title}
         />
       )}
-      <div className="space-y-2.5 p-5">
+      <div className="flex flex-1 flex-col gap-3 p-5">
         <p className="text-sm font-medium tracking-wide text-indigo-600">
           {month} {day}
         </p>

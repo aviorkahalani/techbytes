@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useBoundStore } from '../../store'
-import { Link } from 'react-router-dom'
-import { Article, Pen, TrashSimple } from '@phosphor-icons/react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Pen, TrashSimple } from '@phosphor-icons/react'
 import Container from '../ui/container'
 import Skeleton from '../ui/Skeleton'
 import PostItem from '../PostItem'
@@ -11,6 +11,7 @@ export default function Overview() {
   const deletePost = useBoundStore((state) => state.deletePost)
   const loading = useBoundStore((state) => state.loading)
   const posts = useBoundStore((state) => state.posts)
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchPosts()
@@ -21,25 +22,25 @@ export default function Overview() {
     content = <Skeleton />
   } else if (posts) {
     content = posts.map((post) => {
-      const handleDelete = () => {
+      const handleDelete = (ev: React.MouseEvent) => {
+        ev.stopPropagation()
         deletePost(post.id)
+      }
+
+      const handleEdit = (ev: React.MouseEvent) => {
+        ev.stopPropagation()
+        navigate('edit/' + post.id)
       }
 
       return (
         <PostItem key={post.id} post={post}>
           <div className="mt-auto flex items-center gap-1 text-sm">
-            <Link
-              to={`/posts/${post.id}`}
-              className="flex items-center gap-2.5 rounded bg-blue-600 bg-opacity-5 px-3 py-2.5 text-blue-600 transition hover:bg-opacity-10"
-            >
-              <Article size={20} /> Read
-            </Link>
-            <Link
-              to={`edit/${post.id}`}
+            <button
+              onClick={handleEdit}
               className="flex items-center gap-2.5 rounded bg-green-600 bg-opacity-5 px-3 py-2.5 text-green-600 transition hover:bg-opacity-10"
             >
               <Pen size={20} /> Update
-            </Link>
+            </button>
             <button
               onClick={handleDelete}
               className="flex items-center gap-2.5 rounded bg-rose-600 bg-opacity-5 px-3 py-2.5 text-rose-600 transition hover:bg-opacity-10"
