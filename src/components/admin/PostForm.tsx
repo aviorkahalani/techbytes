@@ -8,8 +8,7 @@ interface PostFormProps {
 }
 
 export default function PostForm({ post }: PostFormProps) {
-  const createPost = useBoundStore((state) => state.createPost)
-  const editPost = useBoundStore((state) => state.editPost)
+  const savePost = useBoundStore((state) => state.savePost)
   const navigate = useNavigate()
 
   const [file, setFile] = useState<File | null>(null)
@@ -35,17 +34,14 @@ export default function PostForm({ post }: PostFormProps) {
     setFile(ev.target.files[0])
   }
 
-  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault()
-
     if (post.id) {
-      editPost(post.id, fields, file).then(() => {
-        navigate('/admin')
-      })
+      await savePost(fields, file, post.id)
+      navigate('/admin')
     } else {
-      createPost(fields, file).then(() => {
-        navigate('/admin')
-      })
+      await savePost(fields, file)
+      navigate('/admin')
     }
   }
 
