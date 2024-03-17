@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a[aria-current='page'] {
+    @apply text-blue-600;
+  }
+
+  h1 {
+    @apply font-serif text-2xl font-medium md:text-4xl;
+  }
+
+  h2 {
+    @apply font-serif text-xl font-medium;
+  }
+
+  p {
+    @apply text-lg font-light leading-relaxed text-neutral-600;
+  }
+}
+
+@layer utilities {
+  .highlight {
+    @apply text-indigo-600;
+  }
+}
