@@ -41,7 +41,8 @@ export const createBlogSlice: StateCreator<BlogSlice> = (set) => ({
   fetchPosts: async () => {
     try {
       set(() => ({ loading: true }))
-      const snapshot = await getDocs(collection(db, 'posts'))
+      const q = query(collection(db, 'posts'), orderBy('published', 'desc'))
+      const snapshot = await getDocs(q)
       const posts: Post[] = snapshot.docs.map((doc) => _formatPost(doc))
       set(() => ({ posts }))
     } catch (error: unknown) {

@@ -9,6 +9,7 @@ interface PostFormProps {
 
 export default function PostForm({ post }: PostFormProps) {
   const savePost = useBoundStore((state) => state.savePost)
+  const loading = useBoundStore((state) => state.loading)
   const navigate = useNavigate()
 
   const [file, setFile] = useState<File | null>(null)
@@ -122,7 +123,8 @@ export default function PostForm({ post }: PostFormProps) {
 
       <button
         type="submit"
-        className="w-full rounded bg-indigo-600 p-3 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-opacity-85"
+        className="w-full rounded bg-indigo-600 p-3 text-sm font-medium uppercase tracking-wide text-white transition hover:bg-opacity-85 disabled:cursor-not-allowed disabled:bg-gray-600"
+        disabled={loading}
       >
         Post Blog
       </button>
