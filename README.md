@@ -1,30 +1,70 @@
-# React + TypeScript + Vite
+# TechBytes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a blog application built with React, TypeScript, Zustand, and Firebase. Users can browse and read posts, while admins have the ability to update, create, and delete posts.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshot](#screenshot)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **User**:
+  - Browse and read posts
+- **Admin**:
+  - Create new posts
+  - Update existing posts
+  - Delete posts
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Frontend**:
+  - React
+  - TypeScript
+  - Zustand (state management)
+- **Backend**:
+  - Firebase (Firestore, Authentication)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/aviorkahalani/techbytes/
+
+   cd techbytes
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up Firebase:
+
+   - Create a Firebase project in the [Firebase Console](https://console.firebase.google.com/).
+   - Add a web app to your Firebase project and copy the Firebase config.
+   - Create a `.env` file in the root directory of your project and add your Firebase configuration:
+
+     ```env
+     VITE_FIREBASE_API_KEY=your_api_key
+     VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+     VITE_FIREBASE_PROJECT_ID=your_project_id
+     VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+     VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+     VITE_FIREBASE_APP_ID=your_app_id
+     ```
+
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+## Screenshot
+
+![blog](https://res.cloudinary.com/avior-projects/image/upload/v1716393655/896a0118-fc78-4e66-ada3-bfa31005f97c.png)
